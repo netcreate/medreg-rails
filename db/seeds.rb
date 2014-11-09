@@ -52,6 +52,7 @@ groups = Group.create([
     students: [
       students[0],
       students[1],
+      students[2],
     ],
   },
   {

@@ -1,7 +1,7 @@
-<%= form_for(@student) do |f| %>
+<%= bootstrap_form_for(@student, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
   <% if @student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</strong>
 
       <ul>
       <% @student.errors.full_messages.each do |message| %>
@@ -10,6 +10,12 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= f.text_field :name %>
+    <%= f.text_field :infix %>
+    <%= f.text_field :surname %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

@@ -1,8 +1,12 @@
-<h1>Listing groups</h1>
+<h1>Groups</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
+      <th>Code</th>
+      <th>Type</th>
+      <th>Teacher</th>
+      <th>Students</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -10,6 +14,16 @@
   <tbody>
     <% @groups.each do |group| %>
       <tr>
+        <td><%= group.code %></td>
+        <td><%= group.type %></td>
+        <td><%= group.teacher.full_name %></td>
+        <td>
+          <ul>
+          <% group.students.each do |student| %>
+            <li><%= student.full_name %></li>
+          <% end %>
+          </ul>
+        </td>
         <td><%= link_to 'Show', group %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -20,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Group', new_group_path %>
+<%= link_to 'New Group', new_group_path, class: 'btn btn-primary' %>

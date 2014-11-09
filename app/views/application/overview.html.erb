@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>MedReg</h1>
+    <br>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-6">
+    <strong>Klas</strong>
+    <div class="pull-right">
+      <%= collection_select(nil, nil, @groups, :id, :code, {:prompt => 'Kies een klas..'}) %>
+    </div>
+    <hr>
+    <% @students.each do |student| %>
+      <div class="col-xs-3">
+        <a href="#" class="thumbnail">
+          <img data-src="holder.js/100%x140" alt="...">
+          <div class="caption">
+            <small><%= student.full_name %></small>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-6">
+    <strong>Computers</strong>
+    <hr>
+    <% (1..10).each do %>
+      <div class="col-xs-3">
+        <a href="#" class="thumbnail">
+          <img data-src="holder.js/100%x140" alt="...">
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>

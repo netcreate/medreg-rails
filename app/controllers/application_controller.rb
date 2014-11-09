@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  respond_to :json
-
-  def index
-    a = {bla: 'bla'}
-    p a.to_json
+  def overview
+    @groups = Group.all
+    if params[:group_id]
+      @students = Group.find_by_id(params[:group_id]).students
+    end
   end
 end
