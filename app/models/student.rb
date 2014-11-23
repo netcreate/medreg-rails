@@ -2,6 +2,12 @@ class Student < ActiveRecord::Base
   validates :name, presence: true
   validates :code, uniqueness: true
 
+  has_attached_file :picture, :styles => {
+    :thumb => "100x140>"
+  }, :default_url => "/images/:style/missing.png"
+
+  validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+
   has_and_belongs_to_many :groups, uniq: true
 
   def full_name

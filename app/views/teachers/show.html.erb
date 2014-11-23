@@ -1,4 +1,30 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @teacher.full_name %> (<%= @teacher.code %>)</h1>
 
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+<div class="row">
+  <div class="col-xs-6">
+    <%= link_to 'Edit', edit_teacher_path(@teacher) %> |
+    <%= link_to 'Back', teachers_path %>
+  </div>
+  <div class="col-xs-6 text-right">
+
+  </div>
+</div>
+
+<p id="notice"><%= notice %></p>
+<hr>
+
+<div class="row">
+  <div class="col-xs-2">
+    <% if @teacher.groups.count > 0 %>
+      <strong>Mentorklassen:</strong>
+    <% end %>
+    <ul>
+      <% @teacher.groups.each do |group| %>
+        <li><%= link_to group.code, group_path(group) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-xs-10">
+
+  </div>
+</div>

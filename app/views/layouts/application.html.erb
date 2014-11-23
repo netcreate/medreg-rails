@@ -8,6 +8,27 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <a class="navbar-brand" href="/">MedReg</a>
+    <ul class="nav navbar-nav">
+      <li class="<%= 'active' if params[:controller] == 'application' %>">
+        <%= link_to 'Overview', :root %>
+      </li>
+      <li class="<%= 'active' if params[:controller] == 'groups' %>">
+        <%= link_to 'Groups', :groups %>
+      </li>
+      <li class="<%= 'active' if params[:controller] == 'teachers' %>">
+        <%= link_to 'Teachers', :teachers %>
+      </li>
+      <li class="<%= 'active' if params[:controller] == 'students' %>">
+        <%= link_to 'Students', :students %>
+      </li>
+    </ul>
+    <p class="navbar-text navbar-right">Not Signed In</p>
+  </div>
+</nav>
+
 <div class="container">
 <%= yield %>
 </div>

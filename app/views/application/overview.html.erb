@@ -1,36 +1,54 @@
 <div class="row">
-  <div class="col-xs-12">
-    <h1>MedReg</h1>
-    <br>
-  </div>
-</div>
-<div class="row">
   <div class="col-xs-6">
     <strong>Klas</strong>
     <div class="pull-right">
-      <%= collection_select(nil, nil, @groups, :id, :code, {:prompt => 'Kies een klas..'}) %>
+      <select onchange="changeGroup(event)">
+        <option>Kies een klas...</option>
+        <optgroup label="Klassen">
+          <% @groups.where(type: nil).order(code: :asc).each do |group| %>
+            <option value="<%= group.id %>" <%= 'selected' if group.id == params[:group_id].to_i %>>
+              <%= group.code %>
+            </option>
+          <% end %>
+        </optgroup>
+        <optgroup label="Clusters">
+          <% @groups.where.not(type: nil).order(code: :asc).each do |group| %>
+            <option value="<%= group.id %>" <%= 'selected' if group.id == params[:group_id].to_i %>>
+              <%= group.code %>
+            </option>
+          <% end %>
+        </optgroup>
+      </select>
     </div>
     <hr>
-    <% @students.each do |student| %>
-      <div class="col-xs-3">
-        <a href="#" class="thumbnail">
-          <img data-src="holder.js/100%x140" alt="...">
-          <div class="caption">
-            <small><%= student.full_name %></small>
+
+    <% @students.each.with_index do |student, index| %>
+      <% if index == 0 %><div class="row small-gutter"><% end %>
+        <div class="col-xs-3 student">
+          <div class="thumbnail">
+            <%= image_tag student.picture.url(:thumb) %>
+            <div class="caption">
+              <small><%= student.name %></small>
+            </div>
           </div>
-        </a>
-      </div>
+        </div>
+      <% if (index + 1).modulo(6).zero? || (index + 1) == @students.each.count %>
+        </div>
+        <%= raw('<div class="row small-gutter">') unless (index + 1) == @students.each.count %>
+      <% end %>
     <% end %>
   </div>
   <div class="col-xs-6">
     <strong>Computers</strong>
     <hr>
-    <% (1..10).each do %>
-      <div class="col-xs-3">
-        <a href="#" class="thumbnail">
-          <img data-src="holder.js/100%x140" alt="...">
-        </a>
-      </div>
-    <% end %>
+    <div class="row small-gutter">
+      <% (1..10).each do %>
+        <div class="col-xs-3 computer">
+          <a href="#" class="thumbnail">
+            <img data-src="holder.js/100%x110" alt="...">
+          </a>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

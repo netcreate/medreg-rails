@@ -1,12 +1,37 @@
 <h1><%= @student.full_name %></h1>
 
-<ul>
-  <% @student.groups.each do |group| %>
-    <li><%= group.code %></li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col-xs-6">
+    <p><%= @student.code %> &mdash;
+    <% first_group = @student.groups.first %>
+    <% if first_group %>
+      <%= link_to first_group.code, group_path(first_group) %>
+      <% if first_group.teacher %>
+        &mdash;
+        <%= link_to "#{first_group.teacher.full_name} (#{first_group.teacher.code})", teacher_path(first_group.teacher) %>
+      <% end %>
+    <% end %>
+    </p>
+  </div>
+  <div class="col-xs-6 text-right">
+    <%= link_to 'Edit', edit_student_path(@student) %> |
+    <%= link_to 'Back', students_path %>
+  </div>
+</div>
 
 <p id="notice"><%= notice %></p>
+<hr>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<div class="row">
+  <div class="col-xs-2">
+    <%= image_tag @student.picture.url(:thumb) %>
+  </div>
+  <div class="col-xs-10">
+    <strong>Klassen en clusters:</strong>
+    <ul>
+      <% @student.groups.each do |group| %>
+        <li><%= link_to group.code, group_path(group) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

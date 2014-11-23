@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
     @groups = Group.all
     if params[:group_id]
       @students = Group.find_by_id(params[:group_id]).students
+    else
+      @students = []
     end
   end
 end

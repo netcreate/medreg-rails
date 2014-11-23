@@ -30,6 +30,8 @@ gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
 gem 'bootstrap_form'
 gem 'holder_rails'
+gem 'paperclip', '~> 4.2'
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
