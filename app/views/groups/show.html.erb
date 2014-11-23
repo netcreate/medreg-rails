@@ -1,39 +1,30 @@
-<h1><%= @group.code %></h1>
 <div class="row">
   <div class="col-xs-6">
-    <strong>Mentor:</strong>
-    <% if @group.teacher %>
-      <%= link_to("#{@group.teacher.full_name} (#{@group.teacher.code})", teacher_path(@group.teacher)) %>
-    <% else %>
-      <span class="text-muted">geen</span>
-    <% end %>
-
-    <p id="notice"><%= notice %></p>
+    <h1><%= @group.code %></h1>
   </div>
   <div class="col-xs-6 text-right">
-    <%= link_to 'Edit', edit_group_path(@group) %> |
-    <%= link_to 'Back', groups_path %>
+    <%= link_to 'Back', groups_path, class: 'btn btn-default' %>
+    <%= link_to 'Edit', edit_group_path(@group), class: 'btn btn-primary' %>
   </div>
 </div>
 
 <hr>
 
 <div class="row">
-  <div class="col-md-8 col-sm-12">
-      <% @group.students.each.with_index do |student, index| %>
-        <% if index == 0 %><div class="row"><% end %>
-          <div class="col-xs-2">
-            <a href="<%= student_path(student) %>" class="thumbnail">
-              <%= image_tag student.picture.url(:thumb) %>
-              <div class="caption">
-                <small><%= student.full_name %></small>
-              </div>
-            </a>
-          </div>
-        <% if (index + 1).modulo(5).zero? || (index + 1) == @group.students.each.count %>
-          </div>
-          <%= raw('<div class="row">') unless (index + 1) == @group.students.each.count %>
-        <% end %>
+  <div class="col-md-6 col-sm-12">
+      <%= render 'students' %>
+  </div>
+  <div class="col-md-6">
+    <div class="well">
+      <p>
+      <strong>Mentor:</strong>
+      <% if @group.teacher %>
+        <%= link_to("#{@group.teacher.full_name} (#{@group.teacher.code})", teacher_path(@group.teacher)) %>
+      <% else %>
+        <span class="text-muted">geen</span>
       <% end %>
+      </p>
+      <p><%= @group.students.count %> leerlingen</p>
+    </div>
   </div>
 </div>

@@ -6,58 +6,63 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-teachers = Teacher.create([
-  {
-    code: 'REA',
-    name: 'Anne',
-    surname: 'Reitsma',
-  },
-  {
-    code: 'VUH',
-    name: 'Hans',
-    surname: 'Vuurman',
-  },
-  {
-    code: 'VEF',
-    name: 'Foekje',
-    infix: 'van der',
-    surname: 'Velde',
-  }
-])
+user = User.new
+user.email = 'john@doe.com'
+user.password = 'd3drmp22'
+user.save!
 
-students = Student.create([
-  {
-    code: '100001',
-    name: 'Manon',
-    surname: 'Vermeulen',
-  },
-  {
-    code: '100002',
-    name: 'Feike',
-    surname: 'Hof',
-  },
-  {
-    code: '100003',
-    name: 'Bas',
-    infix: 'van der',
-    surname: 'Hoek',
-  }
-])
+# teachers = Teacher.create([
+#   {
+#     code: 'REA',
+#     name: 'Anne',
+#     surname: 'Reitsma',
+#   },
+#   {
+#     code: 'VUH',
+#     name: 'Hans',
+#     surname: 'Vuurman',
+#   },
+#   {
+#     code: 'VEF',
+#     name: 'Foekje',
+#     infix: 'van der',
+#     surname: 'Velde',
+#   }
+# ])
 
-groups = Group.create([
-  {
-    code: 'G1A',
-    description: 'Gymnasium 1A',
-    teacher: teachers[0],
-    students: [
-      students[0],
-      students[1],
-      students[2],
-    ],
-  },
-  {
-    code: 'G2A',
-    description: 'Gymnasium 2A',
-    teacher: teachers[1],
-  },
-])
+# students = Student.create([
+#   {
+#     code: '100001',
+#     name: 'Manon',
+#     surname: 'Vermeulen',
+#   },
+#   {
+#     code: '100002',
+#     name: 'Feike',
+#     surname: 'Hof',
+#   },
+#   {
+#     code: '100003',
+#     name: 'Bas',
+#     infix: 'van der',
+#     surname: 'Hoek',
+#   }
+# ])
+
+# groups = Group.create([
+#   {
+#     code: 'G1A',
+#     description: 'Gymnasium 1A',
+#     teacher: teachers[0],
+#     students: [
+#       students[0],
+#       students[1],
+#       students[2],
+#     ],
+#   },
+#   {
+#     code: 'G2A',
+#     description: 'Gymnasium 2A',
+#     teacher: teachers[1],
+#   },
+# ])

@@ -1,7 +1,6 @@
-<h1><%= @student.full_name %></h1>
-
 <div class="row">
   <div class="col-xs-6">
+    <h1><%= @student.full_name %></h1>
     <p><%= @student.code %> &mdash;
     <% first_group = @student.groups.first %>
     <% if first_group %>
@@ -14,12 +13,11 @@
     </p>
   </div>
   <div class="col-xs-6 text-right">
-    <%= link_to 'Edit', edit_student_path(@student) %> |
-    <%= link_to 'Back', students_path %>
+    <%= link_to 'Back', students_path, class: 'btn btn-default' %>
+    <%= link_to 'Edit Student', edit_student_path(@student), class: 'btn btn-primary' %>
   </div>
 </div>
 
-<p id="notice"><%= notice %></p>
 <hr>
 
 <div class="row">

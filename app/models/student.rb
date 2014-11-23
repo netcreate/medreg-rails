@@ -1,6 +1,7 @@
 class Student < ActiveRecord::Base
   validates :name, presence: true
   validates :code, uniqueness: true
+  self.per_page = 100
 
   has_attached_file :picture, :styles => {
     :thumb => "100x140>"

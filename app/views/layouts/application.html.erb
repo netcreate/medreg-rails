@@ -25,12 +25,27 @@
         <%= link_to 'Students', :students %>
       </li>
     </ul>
-    <p class="navbar-text navbar-right">Not Signed In</p>
+    <p class="navbar-text navbar-right">
+      <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      <% end %>
+    </p>
   </div>
 </nav>
 
 <div class="container">
-<%= yield %>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+  <%= yield %>
 </div>
 
 </body>

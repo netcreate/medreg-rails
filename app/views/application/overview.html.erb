@@ -22,20 +22,10 @@
     </div>
     <hr>
 
-    <% @students.each.with_index do |student, index| %>
-      <% if index == 0 %><div class="row small-gutter"><% end %>
-        <div class="col-xs-3 student">
-          <div class="thumbnail">
-            <%= image_tag student.picture.url(:thumb) %>
-            <div class="caption">
-              <small><%= student.name %></small>
-            </div>
-          </div>
-        </div>
-      <% if (index + 1).modulo(6).zero? || (index + 1) == @students.each.count %>
-        </div>
-        <%= raw('<div class="row small-gutter">') unless (index + 1) == @students.each.count %>
-      <% end %>
+    <% if @students %>
+      <%= render "students" %>
+    <% else %>
+      Welkom
     <% end %>
   </div>
   <div class="col-xs-6">
